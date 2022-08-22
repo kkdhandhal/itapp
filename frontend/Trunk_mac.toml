@@ -1,0 +1,14 @@
+# An example Trunk.toml with all possible fields along with their defaults.
+
+[build]
+# The index HTML file to drive the bundling process.
+target = "index.html"
+public_url = "/"
+
+filehash = true
+
+[[hooks]]
+stage = "build"
+command = "sh"
+command_arguments = ["-c","npx tailwindcss -i ./css/index.css -o $pwd/css/app.css"]
+
