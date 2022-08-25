@@ -9,8 +9,8 @@ use actix_web::{HttpResponse, web::{self, Json}, http::header::ContentType};
 pub async fn get_menu(client : web::Data<Client>,path: web::Path<(i32, i32)>) -> HttpResponse{
     let (userid, menu_id) = path.into_inner();
     let col_menu = client.database("ITAPP").collection::<MenuMast>("mst_menu");
-
-    let cursor = col_menu.find(doc!{"menu_parent":menu_id},None).await;
+    let find_opt = mongodb::options::FindOptions::builder().sort(doc!{"menu_disp_id":1,}).build();
+    let cursor = col_menu.find(doc!{"menu_parent":menu_id},find_opt).await;
     match cursor{
         Ok(mut res)=>{
             let mut menu_list:Vec<MenuMast> =Vec::new();

@@ -8,6 +8,7 @@ pub struct MenuMast{
     pub menu_link:String,
     pub menu_icon:String,
     pub menu_parent:i32,
+    pub menu_disp_id:i32,
 }
 
 /*impl MenuMast{

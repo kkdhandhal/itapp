@@ -1,5 +1,5 @@
 use yew::prelude::*;
-use crate::model::master::MenuMast;
+
 pub struct Navbar;
 
 

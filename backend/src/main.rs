@@ -13,14 +13,14 @@ use actix_cors::Cors;
 use mongodb::{Client,Collection};
 
 
-async fn index(req: HttpRequest) -> Result<NamedFile> {
+/* async fn index(req: HttpRequest) -> Result<NamedFile> {
     let path: PathBuf = "./dist/index.html".parse().unwrap();
     Ok(NamedFile::open(path)?)
 }
 async fn static_file(req: HttpRequest) -> Result<NamedFile> {
     let path: PathBuf = format!("./dist/{}",req.match_info().query("filename")).parse().unwrap();
     Ok(NamedFile::open(path)?)
-}
+} */
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()>{
@@ -41,8 +41,8 @@ async fn main() -> std::io::Result<()>{
             .wrap(cors)
             .configure(masters::master::init)
             .configure(menu::init::init)
-            .route("/",web::get().to(index))
-            .route("/{filename:.*}", web::get().to(static_file))
+           // .route("/",web::get().to(index))
+          //  .route("/{filename:.*}", web::get().to(static_file))
            // .configure(user::route::init)
     })
     .bind(("127.0.0.1",8090))?
